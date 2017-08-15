@@ -7,12 +7,16 @@ Imports System.Runtime.InteropServices
 ' associated with an assembly.
 
 ' Review the values of the assembly attributes
+Imports System.Security
+
 <Assembly: AssemblyTitle("DotNetNuke Reports Module")> 
 <Assembly: AssemblyDescription("DotNetNuke Reports Module")> 
 <Assembly: AssemblyCompany("DotNetNuke Corporation")> 
 <Assembly: AssemblyProduct("http://www.dotnetnuke.com")>
 <Assembly: AssemblyCopyright("DotNetNuke Reports Module is copyright 2002-2016 by DotNetNuke Corporation. All Rights Reserved")>
 <Assembly: AssemblyTrademark("DotNetNuke")> 
+<Assembly: AllowPartiallyTrustedCallers()> 
+<Assembly: SecurityRules(SecurityRuleSet.Level1)> 
 
 <Assembly: ComVisible(False)> 
 
@@ -30,8 +34,8 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("5.8.0.0")>
-<Assembly: AssemblyFileVersion("5.8.0.0")>
+<Assembly: AssemblyVersion("5.8.1.0")>
+<Assembly: AssemblyFileVersion("5.8.1.0")>
 <Assembly: WebResource("dnn.reports.js", "text/javascript")> 
 <Assembly: WebResource("CssForm.css", "test/css")> 
 <Assembly: WebResource("CssForm.debug.css", "text/css")> 

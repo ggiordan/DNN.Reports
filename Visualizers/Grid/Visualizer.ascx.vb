@@ -19,6 +19,7 @@
 '
 Imports DotNetNuke
 Imports DotNetNuke.Common.Utilities
+Imports DotNetNuke.Services.Exceptions
 
 Imports System.Web.UI
 Imports System.Collections.Generic
@@ -134,7 +135,64 @@ Namespace DotNetNuke.Modules.Reports.Visualizers.Grid
                 Next
             End If
         End Sub
+        ''' <summary>
+        ''' Export the grid to an excel spreadsheet
+        ''' </summary>
+        ''' <param name="sender"></param>
+        ''' <param name="e"></param>
+        ''' <history>
+        ''' 2007-08-06 [dsanchez] created
+        ''' </history>
+        ''' <remarks></remarks>
+        Protected Sub cmdExportToExcel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdExportToExcel.Click
+            Try
+                Dim reportTitle As String
 
+'Get the name of the report
+                If Report.Title <> "" Then
+                    reportTitle = Report.Title
+                Else
+                    reportTitle = "Report"
+                End If
+
+'Export the results to excel
+                Response.Clear()
+                Response.AddHeader("content-disposition", "attachment;filename=" & reportTitle & ".xls")
+                Response.ContentType = "application/ms-excel"
+                Response.Write(convertDataTableToHtmlTable(ReportResults))
+                Response.End()
+            Catch ex As Exception
+' Ignore the thread abort error caused by response.end
+                If Not (ex.GetType Is GetType(System.Threading.ThreadAbortException)) Then
+                    Response.Clear()
+                    ProcessModuleLoadException(Me, ex)
+                End If
+            End Try
+        End Sub
+
+        Private Function convertDataTableToHtmlTable(ByVal dataTableResults As DataTable) As String
+            Dim htmlDataTable As String = ""
+
+            htmlDataTable = "<table><tr>"
+
+'Create the header columns
+            For Each headerColumn As DataColumn In dataTableResults.Columns
+                htmlDataTable = htmlDataTable & "<th>" & headerColumn.ColumnName & "</th>"
+            Next
+            htmlDataTable = htmlDataTable & "</tr>"
+
+'Now create the datatable content
+            For Each contentRow As DataRow In dataTableResults.Rows
+                htmlDataTable = htmlDataTable & "<tr>"
+                For Each rowColumn As DataColumn In dataTableResults.Columns
+                    htmlDataTable = htmlDataTable & "<td>" & contentRow(rowColumn.ColumnName).ToString() & "</td>"
+                Next
+                htmlDataTable = htmlDataTable & "</tr>"
+            Next
+            htmlDataTable = htmlDataTable & "</table>"
+
+            Return htmlDataTable
+        End Function
 #End Region
 
 #Region " Overrides "

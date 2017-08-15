@@ -24,6 +24,7 @@ Imports System.Web.UI
 Imports System.Collections.Generic
 Imports System.Reflection
 
+Imports System.Security
 Imports UISkin = DotNetNuke.UI.Skins.Skin
 Imports DotNetNuke.Services.Localization
 Imports DotNetNuke.Security

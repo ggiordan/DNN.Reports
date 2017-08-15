@@ -21,6 +21,7 @@
 Imports DotNetNuke.Entities.Modules
 Imports System
 Imports System.Runtime.Serialization
+Imports System.Security
 
 Namespace DotNetNuke.Modules.Reports.Exceptions
 

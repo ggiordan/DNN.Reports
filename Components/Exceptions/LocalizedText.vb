@@ -1,5 +1,6 @@
 Imports DotNetNuke.Services.Localization
 Imports System.Runtime.Serialization
+Imports System.Security
 
 Namespace DotNetNuke.Modules.Reports.Exceptions
     <Serializable()> _
