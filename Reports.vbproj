@@ -25,7 +25,7 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <DNNVersion>05.08.01</DNNVersion>
+    <DNNVersion>05.08.02</DNNVersion>
     <DNNPackageOutputPath>Packages</DNNPackageOutputPath>
     <ResourceFileName>$(MSBuildProjectName)_$(DNNVersion)_Resources.zip</ResourceFileName>
     <FileUpgradeFlags>
@@ -145,6 +145,8 @@
     <EmbeddedResource Include="js\dnn.reports.js" />
     <Content Include="Settings.ascx" />
     <Content Include="ViewReports.ascx" />
+    <Content Include="Visualizers\Excel\App_LocalResources\Settings.ascx.resx" />
+    <Content Include="Visualizers\Excel\App_LocalResources\Visualizer.ascx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\DataSources\ADODataSourceBase.vb" />
@@ -239,6 +241,20 @@
       <DependentUpon>ViewReports.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Visualizers\Excel\Settings.ascx.designer.vb">
+      <DependentUpon>Settings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Visualizers\Excel\Settings.ascx.vb">
+      <DependentUpon>Settings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Visualizers\Excel\Visualizer.ascx.designer.vb">
+      <DependentUpon>Visualizer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Visualizers\Excel\Visualizer.ascx.vb">
+      <DependentUpon>Visualizer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Visualizers\Grid\Settings.ascx.designer.vb">
       <DependentUpon>Settings.ascx</DependentUpon>
     </Compile>
@@ -283,7 +299,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Visualizers\Grid\images\Excel-icon.png" />
+    <Content Include="Visualizers\Excel\images\Excel-icon.png" />
+    <Content Include="Visualizers\Excel\Settings.ascx" />
+    <Content Include="Visualizers\Excel\Visualizer.ascx" />
     <Content Include="Visualizers\Grid\Settings.ascx" />
     <Content Include="Visualizers\Grid\Visualizer.ascx" />
     <Content Include="Visualizers\HTML\Settings.ascx" />

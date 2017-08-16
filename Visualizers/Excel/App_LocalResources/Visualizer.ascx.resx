@@ -120,6 +120,9 @@
   <data name="AdminNoReport.Message" xml:space="preserve">
     <value>There is no query configured for this report. For security and privacy reasons, only SuperUsers (Hosts) can create Reports.</value>
   </data>
+  <data name="lblExportToExcel.Text" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
   <data name="NoReportCreated.Message" xml:space="preserve">
     <value>There is no query configured for this report. Please use the Settings page for this module to configure the query to generate the report from</value>
   </data>
@@ -127,6 +130,6 @@
     <value>The report query returned no results or there was an error with your query.</value>
   </data>
   <data name="VisualizerName.Text" xml:space="preserve">
-    <value>Grid</value>
+    <value>Excel</value>
   </data>
 </root>

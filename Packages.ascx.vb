@@ -68,6 +68,7 @@ Namespace DotNetNuke.Modules.Reports
             allExtensions.Add(CreateBuiltInPackage("Grid", BuiltInVersion, ReportsController.PACKAGETYPE_Visualizer, "Grid"))
             allExtensions.Add(CreateBuiltInPackage("HTML", BuiltInVersion, ReportsController.PACKAGETYPE_Visualizer, "HTML"))
             allExtensions.Add(CreateBuiltInPackage("XSLT", BuiltInVersion, ReportsController.PACKAGETYPE_Visualizer, "XSLT"))
+            allExtensions.Add(CreateBuiltInPackage("Excel", BuiltInVersion, ReportsController.PACKAGETYPE_Visualizer, "Excel"))
             allExtensions.Add(CreateBuiltInPackage("Generic ADO.Net Provider", BuiltInVersion, ReportsController.PACKAGETYPE_DataSource, "ADO"))
             allExtensions.Add(CreateBuiltInPackage("DotNetNuke", BuiltInVersion, ReportsController.PACKAGETYPE_DataSource, "DNN"))
             allExtensions.Add(CreateBuiltInPackage("Microsoft SQL Server", BuiltInVersion, ReportsController.PACKAGETYPE_DataSource, "SqlServer"))

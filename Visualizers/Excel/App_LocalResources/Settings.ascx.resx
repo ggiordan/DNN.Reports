@@ -112,21 +112,51 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdminNoReport.Message" xml:space="preserve">
-    <value>There is no query configured for this report. For security and privacy reasons, only SuperUsers (Hosts) can create Reports.</value>
+  <data name="lblAdditionalCSS.Help" xml:space="preserve">
+    <value>Specify any extra CSS attributes you wish to be inserted into the 'style' attribute of the produced grid</value>
   </data>
-  <data name="NoReportCreated.Message" xml:space="preserve">
-    <value>There is no query configured for this report. Please use the Settings page for this module to configure the query to generate the report from</value>
+  <data name="lblAdditionalCSS.Text" xml:space="preserve">
+    <value>Additional CSS</value>
   </data>
-  <data name="NoResults.Message" xml:space="preserve">
-    <value>The report query returned no results or there was an error with your query.</value>
+  <data name="lblCSSClass.Help" xml:space="preserve">
+    <value>Enter a space-separated list of CSS Classes to apply to the produced grid</value>
   </data>
-  <data name="VisualizerName.Text" xml:space="preserve">
-    <value>Grid</value>
+  <data name="lblCSSClass.Text" xml:space="preserve">
+    <value>CSS Class</value>
+  </data>
+  <data name="lblGridLines.Help" xml:space="preserve">
+    <value>Select how you want grid lines to appear in the Grid</value>
+  </data>
+  <data name="lblGridLines.Text" xml:space="preserve">
+    <value>Grid Lines</value>
+  </data>
+  <data name="lblPageData.Help" xml:space="preserve">
+    <value>Check this box to enable paging</value>
+  </data>
+  <data name="lblPageData.Text" xml:space="preserve">
+    <value>Enable Paging?</value>
+  </data>
+  <data name="lblPageSize.Help" xml:space="preserve">
+    <value>Specify the number of records in a page of data (Defaults to 10)</value>
+  </data>
+  <data name="lblPageSize.Text" xml:space="preserve">
+    <value>Page Size</value>
+  </data>
+  <data name="lblShowHeader.Help" xml:space="preserve">
+    <value>Check this box to display the header (column names) of the report</value>
+  </data>
+  <data name="lblShowHeader.Text" xml:space="preserve">
+    <value>Show Header?</value>
+  </data>
+  <data name="lblSortData.Help" xml:space="preserve">
+    <value>Check this box to enable sorting</value>
+  </data>
+  <data name="lblSortData.Text" xml:space="preserve">
+    <value>Enable Sorting?</value>
   </data>
 </root>

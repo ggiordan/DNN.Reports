@@ -1,23 +1,4 @@
-'
-' DotNetNuke® - http://www.dotnetnuke.com
-' Copyright (c) 2002-2006
-' by Perpetual Motion Interactive Systems Inc. ( http://www.perpetualmotion.ca )
-'
-' Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
-' documentation files (the "Software"), to deal in the Software without restriction, including without limitation 
-' the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and 
-' to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-'
-' The above copyright notice and this permission notice shall be included in all copies or substantial portions 
-' of the Software.
-'
-' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
-' TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
-' THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
-' CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
-' DEALINGS IN THE SOFTWARE.
-'
-Imports DotNetNuke
+ï»¿Imports DotNetNuke
 Imports DotNetNuke.Common.Utilities
 Imports DotNetNuke.Services.Exceptions
 
@@ -26,17 +7,8 @@ Imports System.Collections.Generic
 Imports System.Reflection
 Imports UISkin = DotNetNuke.UI.Skins.Skin
 
-Namespace DotNetNuke.Modules.Reports.Visualizers.Grid
+Namespace DotNetNuke.Modules.Reports.Visualizers.Excel
 
-    ''' -----------------------------------------------------------------------------
-    ''' <summary>
-    ''' The Visualizer class displays the Grid
-    ''' </summary>
-    ''' <remarks>
-    ''' </remarks>
-    ''' <history>
-    ''' </history>
-    ''' -----------------------------------------------------------------------------
     Partial Class Visualizer
         Inherits VisualizerControlBase
 
@@ -135,10 +107,69 @@ Namespace DotNetNuke.Modules.Reports.Visualizers.Grid
                 Next
             End If
         End Sub
+        ''' <summary>
+        ''' Export the grid to an excel spreadsheet
+        ''' </summary>
+        ''' <param name="sender"></param>
+        ''' <param name="e"></param>
+        ''' <history>
+        ''' 2007-08-06 [dsanchez] created
+        ''' </history>
+        ''' <remarks></remarks>
+        Protected Sub cmdExportToExcel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdExportToExcel.Click
+            Try
+                Dim reportTitle As String
+
+                'Get the name of the report
+                If Report.Title <> "" Then
+                    reportTitle = Report.Title
+                Else
+                    reportTitle = "Report"
+                End If
+
+                'Export the results to excel
+                Response.Clear()
+                Response.AddHeader("content-disposition", "attachment;filename=" & reportTitle & ".xls")
+                Response.ContentType = "application/ms-excel"
+                Response.Write(convertDataTableToHtmlTable(ReportResults))
+                Response.End()
+            Catch ex As Exception
+                ' Ignore the thread abort error caused by response.end
+                If Not (ex.GetType Is GetType(System.Threading.ThreadAbortException)) Then
+                    Response.Clear()
+                    ProcessModuleLoadException(Me, ex)
+                End If
+            End Try
+        End Sub
+
+        Private Function convertDataTableToHtmlTable(ByVal dataTableResults As DataTable) As String
+            Dim htmlDataTable As String = ""
+
+            htmlDataTable = "<table><tr>"
+
+            'Create the header columns
+            For Each headerColumn As DataColumn In dataTableResults.Columns
+                htmlDataTable = htmlDataTable & "<th>" & headerColumn.ColumnName & "</th>"
+            Next
+            htmlDataTable = htmlDataTable & "</tr>"
+
+            'Now create the datatable content
+            For Each contentRow As DataRow In dataTableResults.Rows
+                htmlDataTable = htmlDataTable & "<tr>"
+                For Each rowColumn As DataColumn In dataTableResults.Columns
+                    htmlDataTable = htmlDataTable & "<td>" & contentRow(rowColumn.ColumnName).ToString() & "</td>"
+                Next
+                htmlDataTable = htmlDataTable & "</tr>"
+            Next
+            htmlDataTable = htmlDataTable & "</table>"
+
+            Return htmlDataTable
+        End Function
+
+
 #End Region
 
 #Region " Overrides "
-
         Public Overrides Sub DataBind()
             ' Get the report for this module
             If Not Me.ValidateDataSource OrElse Not Me.ValidateResults() Then
@@ -196,5 +227,4 @@ Namespace DotNetNuke.Modules.Reports.Visualizers.Grid
 #End Region
 
     End Class
-
 End Namespace
